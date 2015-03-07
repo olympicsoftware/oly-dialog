@@ -29,13 +29,18 @@ DialogRegistry.prototype.getDialogs = function() {
 
 module.service('DialogRegistry', [DialogRegistry]);
 
-module.directive('olyDialog', [function() {
+module.directive('dialog', [function() {
     return {
         restrict: 'E',
         transclude: true,
-        controller: ['$element', '$attrs', 'DialogRegistry', function($element, $attrs, dialogRegistry) {
+        controller: ['$element', '$attrs', '$transclude', 'DialogRegistry', function($element, $attrs, $transclude, dialogRegistry) {
             dialogRegistry.addDialog(this, $attrs.name);
-            var dialog = $element.find('dialog')[0];
+
+            $transclude(function(clone) {
+                $element.append(clone);
+            });
+
+            var dialog = $element[0];
 
             this.show = dialog.show.bind(dialog);
             this.showModal = dialog.showModal.bind(dialog);
@@ -48,15 +53,14 @@ module.directive('olyDialog', [function() {
             this.getReturnValue = function() {
                 return dialog.returnValue;
             };
-        }],
-        template: '<dialog><ng-transclude></ng-transclude></dialog>'
+        }]
     };
 }]);
 
 module.directive('olyDialogClose', [function () {
     return {
         restrict: 'EA',
-        require: '^olyDialog',
+        require: '^dialog',
         link: function(scope, element, attrs, dialog) {
             element.on('click', function() {
                 dialog.close();
@@ -71,13 +75,13 @@ function showDialogButton(mode) {
             restrict: 'EA',
             scope: {
                 'dialogName': '@for',
-                'anchorElement': '=?anchor'
+                'anchorSelector': '@?anchor'
             },
             link: function(scope, element) {
                 var dialog = dialogRegistry.getDialog(scope.dialogName);
 
                 element.on('click', function() {
-                    dialog[mode].call(dialog, scope.anchorElement);
+                    dialog[mode].call(dialog, document.querySelector(scope.anchorSelector));
                 });
             }
         };
