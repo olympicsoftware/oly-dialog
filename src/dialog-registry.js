@@ -1,3 +1,5 @@
+const defaultName = 'defaultDialog';
+
 export default class DialogRegistry {
     /// <summary>
     /// A global registry of dialogs which allows them to be retrieved
