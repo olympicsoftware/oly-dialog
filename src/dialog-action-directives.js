@@ -15,27 +15,25 @@ function dialogClose() {
     };
 }
 
-function showDialogButton(mode) {
-    return function(dialogRegistry) {
-        return {
-            restrict: 'EA',
-            scope: {
-                dialogName: '@for',
-                modal: '=?',
-                anchorSelector: '@?anchor'
-            },
-            link(scope, element) {
-                scope.modal = scope.modal !== undefined ? scope.modal : true;
+function showDialogButton() {
+    return {
+        restrict: 'EA',
+        scope: {
+            dialogName: '@for',
+            modal: '=?',
+            anchorSelector: '@?anchor'
+        },
+        link(scope, element) {
+            scope.modal = scope.modal !== undefined ? scope.modal : true;
 
-                element.on('click', function() {
-                    let dialog = dialogRegistry.getDialog(scope.dialogName);
+            element.on('click', function() {
+                let dialog = dialogRegistry.getDialog(scope.dialogName);
 
-                    if (dialog) {
-                       dialog.show(scope.modal, document.querySelector(scope.anchorSelector));
-                    }
-                });
-            }
-        };
+                if (dialog) {
+                   dialog.show(scope.modal, document.querySelector(scope.anchorSelector));
+                }
+            });
+        }
     };
 }
 

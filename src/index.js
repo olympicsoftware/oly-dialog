@@ -9,6 +9,4 @@ module.service('DialogRegistry', [DialogRegistry]);
 module.directive('dialog', [dialog]);
 
 module.directive('olyDialogClose', [dialogClose]);
-
-module.directive('olyDialogShow', ['DialogRegistry', showDialogButton('show')]);
-module.directive('olyDialogShowModal', ['DialogRegistry', showDialogButton('showModal')]);
+module.directive('olyDialogShow', ['DialogRegistry', showDialogButton]);
