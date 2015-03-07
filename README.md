@@ -83,7 +83,8 @@ The `show` method is defined as such:
 | `modal`  | (bool)                | if true, the dialog will be modal (prevent interaction with other elements on the page). |
 | `anchor` | Element or MouseEvent | the anchor for the dialog.                                                               |
 
-Showing the dialog can also be achieved with the `oly-dialog-show` directive.
+Showing the dialog can also be achieved with the `oly-dialog-show` directive,
+which can be used either as an element or an attribute.
 
 ```html
 <oly-dialog-show for="dialog name" modal="true" anchor=".anchor-selector"></oly-dialog-show>
@@ -104,8 +105,9 @@ The `returnValue` is optional and is the value that is used to resolve the
 promise returned by the `show()` method. If no `returnValue` is specified then
 the promise is rejected.
 
-Closing the dialog can also be achieved using the `oly-dialog-close` directive.
-This directive must be used as a child of the `<dialog>` element.
+Closing the dialog can also be achieved using the `oly-dialog-close` directive,
+which can be used either as an element or an attribute. This directive must be
+used as a child of the `<dialog>` element.
 
 ```html
 <oly-dialog-close return="expression"></oly-dialog-close>
