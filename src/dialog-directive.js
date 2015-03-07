@@ -2,7 +2,7 @@ export default function dialog() {
     return {
         restrict: 'E',
         transclude: true,
-        controller: ['$element', '$attrs', '$transclude', 'DialogRegistry', function($element, $attrs, $transclude, dialogRegistry) {
+        controller: ['$element', '$attrs', '$transclude', '$q', 'DialogRegistry', function($element, $attrs, $transclude, $q, dialogRegistry) {
             dialogRegistry.addDialog(this, $attrs.name);
 
             $transclude((clone) => {
@@ -11,9 +11,29 @@ export default function dialog() {
 
             let dialog = $element[0];
 
-            this.show = dialog.show.bind(dialog);
-            this.showModal = dialog.showModal.bind(dialog);
-            this.close = dialog.close.bind(dialog);
+            this.dialogReturnDeffered = null
+            this.show = function(modal, anchor) {
+                modal = modal !== undefined ? modal : true;
+
+                if (!dialog.open) {
+                    modal
+                        ? dialog.showModal(anchor)
+                        : dialog.show(anchor);
+                }
+
+                this.dialogReturnDeffered = $q.defer();
+                return this.dialogReturnDeffered.promise;
+            };
+
+            this.close = function(returnValue) {
+                dialog.close(returnValue);
+
+                returnValue !== undefined 
+                    ? this.dialogReturnDeffered.resolve(returnValue)
+                    : this.dialogReturnDeffered.reject();
+
+                this.dialogReturnDeffered = null;
+            }
 
             this.isOpen = function() {
                 return dialog.open;

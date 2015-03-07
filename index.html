@@ -12,23 +12,44 @@
     <script>
         var app = angular.module('oly.demo', ['oly.dialog']);
 
-        app.controller('DemoController', [function() {
-            this.return = "";
+        app.controller('DemoController', ['DialogRegistry', function(dialogRegistry) {
+            this.open = function() {
+                var dialog = dialogRegistry.getDialog('demo');
+                dialog.show()
+                    .then(function(result) {
+                        this.result = result;
+                    }.bind(this))
+            }
         }]);
     </script>
 </head>
 <body ng-controller="DemoController as ctrl">
-    <h1 id="anchor">{{ctrl.title}}</h1>
-    <p ng-bind="ctrl.return"></p>
+    <h1 id="anchor">oly-dialog Demo</h1>
+
+    <div>
+        <label>
+            This input is bound to the resolution of the promise from opening the dialog.
+            <input type="text" ng-value="ctrl.result" />
+            <button ng-click="ctrl.open()">Show Dialog from controller</button >
+        </label>
+    </div>
+
+    <div>
+        <label>
+            This input is two way bound to the input inside the dialog.
+            <input type="text" ng-value="ctrl.input" />
+            <button oly-dialog-show for="demo" anchor="#anchor">Show Dialog</button >
+            <button oly-dialog-show for="demo" modal="false">Show non-modal Dialog</button >
+        </label>
+    </div>
 
     <dialog name="demo">
         <h1>Hello World</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iure dolor officia, sed quasi esse earum totam nesciunt, ipsum placeat. Suscipit explicabo ipsum consequuntur alias, quam quibusdam sequi dolorem modi.</p>
-        <input type="text" ng-model="ctrl.input" />
-        <button oly-dialog-close>close</button>
-    </dialog>
 
-    <button oly-dialog-show for="demo" anchor="#anchor">Show Dialog</button >
-    <button oly-dialog-show-modal for="demo">Show Modal Dialog</button >
+        <input type="text" ng-model="ctrl.input" />
+
+        <button oly-dialog-close return="ctrl.input">close</button>
+    </dialog>
 </body>
 </html>

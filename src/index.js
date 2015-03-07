@@ -1,6 +1,5 @@
 import dialog from './dialog-directive';
-import dialogClose from './dialog-close-directive';
-import showDialogButton from './dialog-show-directive';
+import {dialogClose, showDialogButton} from './dialog-action-directives';
 import DialogRegistry from './dialog-registry'
 
 let module = angular.module('oly.dialog', []);
