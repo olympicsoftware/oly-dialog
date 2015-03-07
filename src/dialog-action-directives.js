@@ -15,7 +15,7 @@ function dialogClose() {
     };
 }
 
-function showDialogButton() {
+function showDialogButton(dialogRegistry) {
     return {
         restrict: 'EA',
         scope: {
