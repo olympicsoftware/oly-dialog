@@ -14,9 +14,12 @@
     </script>
 </head>
 <body ng-app="oly.demo">
-    <oly-dialog>
+    <oly-dialog name="demo">
         <h1>Hello World</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iure dolor officia, sed quasi esse earum totam nesciunt, ipsum placeat. Suscipit explicabo ipsum consequuntur alias, quam quibusdam sequi dolorem modi.</p>
+        <button oly-dialog-close>close</button>
     </oly-dialog>
+    <button oly-dialog-show for="demo">Show Dialog</button >
+    <button oly-dialog-show-modal for="demo">Show Modal Dialog</button >
 </body>
 </html>
