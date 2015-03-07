@@ -53,13 +53,5 @@
 
         <button oly-dialog-close return="ctrl.input">close</button>
     </dialog>
-    
-    <script>
-        var dialogs = document.getElementsByTagName('dialog');
-
-        Array.prototype.forEach.call(dialogs, function(d) {
-            dialogPolyfill.registerDialog(d);
-        })
-    </script>
 </body>
 </html>

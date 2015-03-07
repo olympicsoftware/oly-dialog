@@ -7,9 +7,10 @@ non-modal dialogs, which may optionally return a value. `<dialog>` is a part
 of the HTML5.1 spec. For more information on the `<dialog>` element, see this 
 [blog post by treehouse](http://blog.teamtreehouse.com/a-preview-of-the-new-dialog-element).
 
-Requires browser support for `<dialog>`. If you need to support browsers that
-haven't yet implemented `<dialog>`, consider using
-[Google's excellent dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill).
+If you need to support browsers that haven't yet implemented `<dialog>`,
+consider using [Google's excellent dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill).
+This directive will detect that the polyfill is installed and automatically
+register `<dialog>` elements for you.
 
 ## Installation
 

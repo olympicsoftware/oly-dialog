@@ -11,6 +11,12 @@ export default function dialog() {
 
             let dialog = $element[0];
 
+            if (!'HTMLDialogElement' in window && dialogPolyfill) {
+                // If browser support not available and polyfill installed,
+                // register the dialog with the polyfill.
+                dialogPolyfill.registerDialog(dialog);
+            }
+
             this.dialogReturnDeffered = null
             this.show = function(modal, anchor) {
                 modal = modal !== undefined ? modal : true;
