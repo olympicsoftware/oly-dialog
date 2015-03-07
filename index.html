@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>oly-dialog demo</title>
+    
+    <script src="bower_components/dialog-polyfill/dialog-polyfill.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/dialog-polyfill/dialog-polyfill.css" />
+
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="dist/oly-dialog.js"></script>
 
@@ -27,7 +31,7 @@
     <div>
         <label>
             This input is bound to the resolution of the promise from opening the dialog.
-            <input type="text" ng-value="ctrl.result" />
+            <input type="text" ng-model="ctrl.result" />
             <button ng-click="ctrl.open()">Show Dialog from controller</button >
         </label>
     </div>
@@ -49,5 +53,13 @@
 
         <button oly-dialog-close return="ctrl.input">close</button>
     </dialog>
+    
+    <script>
+        var dialogs = document.getElementsByTagName('dialog');
+
+        Array.prototype.forEach.call(dialogs, function(d) {
+            dialogPolyfill.registerDialog(d);
+        })
+    </script>
 </body>
 </html>
