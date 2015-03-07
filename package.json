@@ -1,0 +1,22 @@
+{
+  "name": "oly-dialog",
+  "version": "1.0.0",
+  "description": "An angular wrapper for the HTML5 <dialog> element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "html5",
+    "dialog",
+    "modal",
+    "olympic"
+  ],
+  "author": "Andrew Hughson",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.3.14",
+    "jquery": "^2.1.3"
+  }
+}
