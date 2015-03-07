@@ -7,6 +7,10 @@
     "install": "browserify --debug src/index.js -t [babelify --sourceMapRelative .] --outfile dist/oly-dialog.js && uglifyjs dist/oly-dialog.js -o dist/oly-dialog.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olympicsoftware/oly-dialog"
+  },
   "keywords": [
     "angular",
     "html5",
@@ -24,5 +28,9 @@
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "uglify-js": "^2.4.16"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/olympicsoftware/oly-dialog/issues"
+  },
+  "homepage": "https://github.com/olympicsoftware/oly-dialog"
 }
