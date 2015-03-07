@@ -2,8 +2,9 @@
   "name": "oly-dialog",
   "version": "1.0.0",
   "description": "An angular wrapper for the HTML5 <dialog> element",
-  "main": "index.js",
+  "main": "./dist/oly-dialog.min.js",
   "scripts": {
+    "install": "browserify  src/index.js -t [babelify --sourceMapRelative .] --outfile dist/oly-dialog.js && uglifyjs dist/oly-dialog.js -o dist/oly-dialog.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,5 +19,10 @@
   "dependencies": {
     "angular": "^1.3.14",
     "jquery": "^2.1.3"
+  },
+  "devDependencies": {
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.3",
+    "uglify-js": "^2.4.16"
   }
 }

@@ -5,24 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>oly-dialog</title>
     <link rel="stylesheet" href="">
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="dist/oly-dialog.js"></script>
 
     <script>
         var app = angular.module('oly.demo', ['oly.dialog']);
 
         app.controller('DemoController', [function() {
-            this.title = "Hello world"
+            this.return = "";
         }]);
     </script>
 </head>
 <body ng-controller="DemoController as ctrl">
     <h1 id="anchor">{{ctrl.title}}</h1>
+    <p ng-bind="ctrl.return"></p>
 
     <dialog name="demo">
         <h1>Hello World</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iure dolor officia, sed quasi esse earum totam nesciunt, ipsum placeat. Suscipit explicabo ipsum consequuntur alias, quam quibusdam sequi dolorem modi.</p>
+        <input type="text" ng-model="ctrl.input" />
         <button oly-dialog-close>close</button>
     </dialog>
 
