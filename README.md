@@ -78,10 +78,10 @@ dialogCtrl.show()
 The `show` method is defined as such:
 `show([modal], [anchor])`
 
-|Argument|Type|Description|
-|-------------------------|
-|`modal`|(bool)|if true, the dialog will be modal (prevent interaction with other elements on the page).|
-|`anchor`|Element or MouseEvent|the anchor for the dialog.|
+| Argument | Type                  | Description                                                                              |
+|----------|-----------------------|------------------------------------------------------------------------------------------|
+| `modal`  | (bool)                | if true, the dialog will be modal (prevent interaction with other elements on the page). |
+| `anchor` | Element or MouseEvent | the anchor for the dialog.                                                               |
 
 Showing the dialog can also be achieved with the `oly-dialog-show` directive.
 
