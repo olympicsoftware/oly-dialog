@@ -15,26 +15,26 @@ function dialogClose() {
     };
 }
 
-function showDialogButton(dialogRegistry) {
+function dialogShow(dialogRegistry) {
     return {
         restrict: 'EA',
         scope: {
             dialogName: '@for',
-            modal: '=?',
+            isModal: '=?modal',
             anchorSelector: '@?anchor'
         },
         link(scope, element) {
-            scope.modal = scope.modal !== undefined ? scope.modal : true;
+            scope.isModal = scope.isModal !== undefined ? scope.isModal : true;
 
             element.on('click', function() {
                 let dialog = dialogRegistry.getDialog(scope.dialogName);
 
                 if (dialog) {
-                   dialog.show(scope.modal, document.querySelector(scope.anchorSelector));
+                   dialog.show(scope.isModal, document.querySelector(scope.anchorSelector));
                 }
             });
         }
     };
 }
 
-export {dialogClose, showDialogButton};
+export {dialogClose, dialogShow};

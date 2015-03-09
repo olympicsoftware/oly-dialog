@@ -18,11 +18,11 @@ export default function dialog() {
             }
 
             this.dialogReturnDeffered = null;
-            this.show = function(modal, anchor) {
-                modal = modal !== undefined ? modal : true;
+            this.show = function(isModal, anchor) {
+                isModal = isModal !== undefined ? isModal : true;
 
                 if (!dialog.open) {
-                    modal ? dialog.showModal(anchor) : dialog.show(anchor);
+                    isModal ? dialog.showModal(anchor) : dialog.show(anchor);
                 }
 
                 this.dialogReturnDeffered = $q.defer();
