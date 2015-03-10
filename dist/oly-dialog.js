@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 "use strict";
 
 function dialogClose() {
@@ -46,7 +46,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-},{}],2:[function(require,module,exports){
+},{}],2:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = dialog;
@@ -101,7 +101,7 @@ function dialog() {
     };
 }
 
-},{}],3:[function(require,module,exports){
+},{}],3:[function(_dereq_,module,exports){
 "use strict";
 
 var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -151,19 +151,19 @@ var DialogRegistry = (function () {
 
 module.exports = DialogRegistry;
 
-},{}],4:[function(require,module,exports){
+},{}],4:[function(_dereq_,module,exports){
 "use strict";
 
 var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
 
-var dialog = _interopRequire(require("./dialog-directive"));
+var dialog = _interopRequire(_dereq_("./dialog-directive"));
 
-var _dialogActionDirectives = require("./dialog-action-directives");
+var _dialogActionDirectives = _dereq_("./dialog-action-directives");
 
 var dialogClose = _dialogActionDirectives.dialogClose;
 var dialogShow = _dialogActionDirectives.dialogShow;
 
-var DialogRegistry = _interopRequire(require("./dialog-registry"));
+var DialogRegistry = _interopRequire(_dereq_("./dialog-registry"));
 
 var _module = angular.module("oly.dialog", []);
 

@@ -5,7 +5,7 @@
   "main": "./dist/oly-dialog.min.js",
   "scripts": {
     "prepublish": "npm run-script build",
-    "build": "browserify --debug src/index.js -t [babelify --sourceMapRelative .] --outfile dist/oly-dialog.js && uglifyjs dist/oly-dialog.js -o dist/oly-dialog.min.js"
+    "build": "browserify --debug src/index.js -t [babelify --sourceMapRelative .] -p browserify-derequire --outfile dist/oly-dialog.js && uglifyjs dist/oly-dialog.js -o dist/oly-dialog.min.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
+    "browserify-derequire": "^0.9.3",
     "uglify-js": "^2.4.16"
   },
   "bugs": {
