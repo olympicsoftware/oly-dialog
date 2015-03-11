@@ -19,22 +19,26 @@ function dialogShow(dialogRegistry) {
     return {
         restrict: 'EA',
         scope: {
-            dialogName: '@for',
             isModal: '=?modal',
             anchorSelector: '@?anchor'
         },
-        link(scope, element) {
+        link(scope, element, attrs) {
+            var dialogName = attrs.olyDialogShow;
             scope.isModal = scope.isModal !== undefined ? scope.isModal : true;
 
             element.on('click', function() {
-                let dialog = dialogRegistry.getDialog(scope.dialogName);
+                let dialog = dialogRegistry.getDialog(dialogName);
 
                 if (dialog) {
-                   dialog.show(scope.isModal, document.querySelector(scope.anchorSelector));
+                    scope.$apply(() => {
+                        dialog.show(scope.isModal, document.querySelector(scope.anchorSelector));
+                    });
                 }
             });
         }
     };
 }
 
-export {dialogClose, dialogShow};
+export {
+    dialogClose, dialogShow
+};
