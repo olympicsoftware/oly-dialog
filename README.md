@@ -16,6 +16,15 @@ register `<dialog>` elements for you.
 
 `npm install --save oly-dialog`
 
+Once you have installed oly-dialog, include it in your project however you like,
+e.g. with browserify or by including dist/oly-dialog.js on your page.
+
+Then, add oly-dialog to the dependencies of your angular module.
+
+```javascript
+angular.module('yourApp', ['oly.dialog']);
+```
+
 ## Usage
 
 ### Dialog
