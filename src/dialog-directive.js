@@ -40,9 +40,11 @@ export default function dialog() {
                     dialog.close(returnValue);
                 }
 
-                this.dialogReturnDeffered && returnValue !== undefined
-                    ? this.dialogReturnDeffered.resolve(returnValue) 
-                    : this.dialogReturnDeffered.reject();
+                if (this.dialogReturnDeffered) {
+                    returnValue !== undefined
+                        ? this.dialogReturnDeffered.resolve(returnValue) 
+                        : this.dialogReturnDeffered.reject();
+                }
 
                 this.dialogReturnDeffered = null;
             };
