@@ -51,7 +51,7 @@ export default function dialog() {
                 return dialog.returnValue;
             };
 
-            $scope.$on('$destroy', function() {
+            $scope.$on('$destroy', () => {
                 this.close();
 
                 dialogRegistry.removeDialog($attrs.name);
