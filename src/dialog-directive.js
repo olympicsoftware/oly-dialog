@@ -52,7 +52,9 @@ export default function dialog() {
             };
 
             $scope.$on('$destroy', () => {
-                this.close();
+                if (this.isOpen()) {
+                    this.close();
+                }
 
                 dialogRegistry.removeDialog($attrs.name);
             });
