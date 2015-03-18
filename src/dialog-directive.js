@@ -57,6 +57,10 @@ export default function dialog() {
                 }
 
                 dialogRegistry.removeDialog($attrs.name);
+
+                // We have to manually remove the element because we moved it
+                // to the body.
+                $element.remove();
             });
         }]
     };
