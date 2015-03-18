@@ -2,7 +2,7 @@ export default function dialog() {
     return {
         restrict: 'E',
         transclude: true,
-        controller: ['$element', '$attrs', '$transclude', '$q', 'DialogRegistry', function($element, $attrs, $transclude, $q, dialogRegistry) {
+        controller: ['$scope', '$element', '$attrs', '$transclude', '$q', 'DialogRegistry', function($scope, $element, $attrs, $transclude, $q, dialogRegistry) {
             dialogRegistry.addDialog(this, $attrs.name);
 
             $transclude((clone) => {
@@ -44,6 +44,12 @@ export default function dialog() {
             this.getReturnValue = function() {
                 return dialog.returnValue;
             };
+
+            $scope.$on('$destroy', function() {
+                this.close();
+                
+                dialogRegistry.removeDialog($attrs.name);
+            });
         }]
     };
 }
