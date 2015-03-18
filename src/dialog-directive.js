@@ -36,9 +36,13 @@ export default function dialog() {
             };
 
             this.close = function(returnValue) {
-                dialog.close(returnValue);
+                if (this.isOpen()) {
+                    dialog.close(returnValue);
+                }
 
-                returnValue !== undefined ? this.dialogReturnDeffered.resolve(returnValue) : this.dialogReturnDeffered.reject();
+                this.dialogReturnDeffered && returnValue !== undefined
+                    ? this.dialogReturnDeffered.resolve(returnValue) 
+                    : this.dialogReturnDeffered.reject();
 
                 this.dialogReturnDeffered = null;
             };
