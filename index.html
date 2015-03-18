@@ -29,29 +29,25 @@
     <h1 id="anchor">oly-dialog Demo</h1>
 
     <div>
-        <label>
-            This input is bound to the resolution of the promise from opening the dialog.
-            <input type="text" ng-model="ctrl.result" />
-            <button ng-click="ctrl.open()">Show Dialog from controller</button >
-        </label>
+        This input is bound to the resolution of the promise from opening the dialog.
+        <input type="text" ng-model="ctrl.result" />
+        <button ng-click="ctrl.open()">Show Dialog from controller</button >
     </div>
 
     <div>
-        <label>
-            This input is two way bound to the input inside the dialog.
-            <input type="text" ng-value="ctrl.input" />
-            <button oly-dialog-show="demo" anchor="#anchor">Show Dialog</button >
-            <button oly-dialog-show="demo" modal="false">Show non-modal Dialog</button >
-        </label>
+        This input is two way bound to the input inside the dialog.
+        <input type="text" ng-value="ctrl.input" />
+        <button oly-dialog-show="demo" anchor="#anchor">Show Dialog</button >
+        <button oly-dialog-show="demo" modal="false">Show non-modal Dialog</button >
     </div>
 
-    <dialog name="demo">
-        <h1>Hello World</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iure dolor officia, sed quasi esse earum totam nesciunt, ipsum placeat. Suscipit explicabo ipsum consequuntur alias, quam quibusdam sequi dolorem modi.</p>
+        <dialog name="demo">
+            <h1>Hello World</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iure dolor officia, sed quasi esse earum totam nesciunt, ipsum placeat. Suscipit explicabo ipsum consequuntur alias, quam quibusdam sequi dolorem modi.</p>
 
-        <input type="text" ng-model="ctrl.input" />
+            <input type="text" ng-model="ctrl.input" />
 
-        <button oly-dialog-close return="ctrl.input">close</button>
-    </dialog>
+            <button oly-dialog-close return="ctrl.input">close</button>
+        </dialog>
 </body>
 </html>

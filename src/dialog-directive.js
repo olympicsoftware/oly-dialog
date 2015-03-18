@@ -9,6 +9,12 @@ export default function dialog() {
                 $element.append(clone);
             });
 
+            // While the dialog is not implemented in browsers, it should exist
+            // as a child of the body element.
+            if ($element[0].parentElement !== document.body) {
+                document.body.appendChild($element.detach()[0]);
+            }
+
             let dialog = $element[0];
 
             if (!('HTMLDialogElement' in window) && dialogPolyfill) {
@@ -47,7 +53,7 @@ export default function dialog() {
 
             $scope.$on('$destroy', function() {
                 this.close();
-                
+
                 dialogRegistry.removeDialog($attrs.name);
             });
         }]
