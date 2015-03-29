@@ -10,3 +10,5 @@ module.directive('dialog', [dialog]);
 
 module.directive('olyDialogClose', [dialogClose]);
 module.directive('olyDialogShow', ['DialogRegistry', dialogShow]);
+
+module.exports = 'oly.dialog';

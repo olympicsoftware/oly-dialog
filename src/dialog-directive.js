@@ -3,7 +3,9 @@ export default function dialog() {
         restrict: 'E',
         transclude: true,
         controller: ['$scope', '$element', '$attrs', '$transclude', '$q', 'DialogRegistry', function($scope, $element, $attrs, $transclude, $q, dialogRegistry) {
-            dialogRegistry.addDialog(this, $attrs.name);
+            this.name = $attrs.name;
+
+            dialogRegistry.addDialog(this, this.name);
 
             $transclude((clone) => {
                 $element.append(clone);
@@ -25,20 +27,25 @@ export default function dialog() {
 
             this.dialogReturnDeffered = null;
             this.show = function(isModal, anchor) {
-                isModal = isModal !== undefined ? isModal : true;
-
-                if (!dialog.open) {
-                    isModal ? dialog.showModal(anchor) : dialog.show(anchor);
+                if (dialog.open) {
+                    return;
                 }
+
+                isModal = isModal !== undefined ? isModal : true;
+                isModal ? dialog.showModal(anchor) : dialog.show(anchor);
+                $scope.$emit('dialog:show', this);
 
                 this.dialogReturnDeffered = $q.defer();
                 return this.dialogReturnDeffered.promise;
             };
 
             this.close = function(returnValue) {
-                if (this.isOpen()) {
-                    dialog.close(returnValue);
+                if (!this.isOpen()) {
+                    return;
                 }
+
+                dialog.close(returnValue);
+                $scope.$emit('dialog:close', this);
 
                 if (this.dialogReturnDeffered) {
                     returnValue !== undefined
@@ -58,11 +65,9 @@ export default function dialog() {
             };
 
             $scope.$on('$destroy', () => {
-                if (this.isOpen()) {
-                    this.close();
-                }
+                this.close();
 
-                dialogRegistry.removeDialog($attrs.name);
+                dialogRegistry.removeDialog(this.name);
 
                 // We have to manually remove the element because we moved it
                 // to the body.
