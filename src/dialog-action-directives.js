@@ -19,15 +19,15 @@ function dialogShow(dialogRegistry) {
     return {
         restrict: 'EA',
         scope: {
+            dialogName: '@olyDialogShow',
             isModal: '=?modal',
             anchorSelector: '@?anchor'
         },
         link(scope, element, attrs) {
-            var dialogName = attrs.olyDialogShow;
             scope.isModal = scope.isModal !== undefined ? scope.isModal : true;
 
             element.on('click', function() {
-                let dialog = dialogRegistry.getDialog(dialogName);
+                let dialog = dialogRegistry.getDialog(scope.dialogName);
 
                 if (dialog) {
                     scope.$apply(() => {

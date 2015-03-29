@@ -2,8 +2,8 @@ export default function dialog() {
     return {
         restrict: 'E',
         transclude: true,
-        controller: ['$scope', '$element', '$attrs', '$transclude', '$q', 'DialogRegistry', function($scope, $element, $attrs, $transclude, $q, dialogRegistry) {
-            this.name = $attrs.name;
+        controller: ['$scope', '$element', '$attrs', '$transclude', '$q', '$interpolate', 'DialogRegistry', function($scope, $element, $attrs, $transclude, $q, $interpolate, dialogRegistry) {
+            this.name = $interpolate($attrs.name)($scope);
 
             dialogRegistry.addDialog(this, this.name);
 

@@ -14,13 +14,23 @@ register `<dialog>` elements for you.
 
 ## Installation
 
-`npm install --save oly-dialog`
+```javascript
+npm install --save oly-dialog
+```
 
 Once you have installed oly-dialog, include it in your project however you like,
 e.g. with browserify or by including dist/oly-dialog.js on your page.
 
 Then, add oly-dialog to the dependencies of your angular module.
 
+### Node/Browserify
+```javascript
+var olyDialog = require('oly-dialog');
+
+angular.module('yourApp', [olyDialog]);
+```
+
+### Others
 ```javascript
 angular.module('yourApp', ['oly.dialog']);
 ```
@@ -37,11 +47,11 @@ You can use an oly-dialog just like you would use a regular dialog.
 </dialog>
 ```
 
-Content is transcluded, so it has access to the scope which the dialog is
+Content is transcluded and has access to the scope which the dialog is
 created in.
 
-You can access this dialog from angular code by `require`ing it from a child
-directive like so:
+You can access the controller for the dialog from angular code by `require`ing
+it from a child directive like so:
 
 ```javascript
 module.directive('yourDirective', function() {
@@ -69,7 +79,12 @@ module.service('YourService', ['DialogRegistry', function(dialogRegistry) {
 }]);
 ```
 
+The name can be a regular attribute or an Angular expression.
+
 ### Showing the Dialog
+
+#### From Code
+
 If you have access to the dialog controller, you can use it to show the dialog.
 The `show()` method returns a promise which will resolve with the return value
 set when the dialog is closed. If no return value is provided, the promise will
@@ -82,16 +97,21 @@ dialogCtrl.show()
     })
     .catch(function() {
         // do something if value not specified
+    })
+    .finally(function() {
+        // always do something when the dialog is closed
     });
 ```
 
 The `show` method is defined as such:
 `show([modal], [anchor])`
 
-| Argument | Type                  | Description                                                                              |
-|----------|-----------------------|------------------------------------------------------------------------------------------|
-| `modal`  | (bool)                | if true, the dialog will be modal (prevent interaction with other elements on the page). |
-| `anchor` | Element or MouseEvent | the anchor for the dialog.                                                               |
+| Argument                            | Type                  | Description                                                                              |
+|-------------------------------------|-----------------------|------------------------------------------------------------------------------------------|
+| `modal` (optional)                  | (bool) default: true  | if true, the dialog will be modal (prevent interaction with other elements on the page). |
+| `anchor` (optional)                 | Element or MouseEvent | the anchor for the dialog (not currently implemented in browsers).                       |
+
+#### From a Template
 
 Showing the dialog can also be achieved with the `oly-dialog-show` directive,
 which can be used either as an element or an attribute.
@@ -105,6 +125,9 @@ If the selector matches multiple DOM elements, the first match is used as the
 anchor.
 
 ### Closing the Dialog
+
+#### From Code
+
 The dialog controller can also be used to close the dialog.
 
 ```javascript
@@ -114,6 +137,8 @@ dialogCtrl.close(returnValue);
 The `returnValue` is optional and is the value that is used to resolve the
 promise returned by the `show()` method. If no `returnValue` is specified then
 the promise is rejected.
+
+#### From a Template
 
 Closing the dialog can also be achieved using the `oly-dialog-close` directive,
 which can be used either as an element or an attribute. This directive must be
