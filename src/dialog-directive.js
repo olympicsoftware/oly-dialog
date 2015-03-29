@@ -33,7 +33,7 @@ export default function dialog() {
 
                 isModal = isModal !== undefined ? isModal : true;
                 isModal ? dialog.showModal(anchor) : dialog.show(anchor);
-                $scope.$emit('dialog:show', this);
+                $scope.$emit('$dialogShow', this);
 
                 this.dialogReturnDeffered = $q.defer();
                 return this.dialogReturnDeffered.promise;
@@ -45,7 +45,7 @@ export default function dialog() {
                 }
 
                 dialog.close(returnValue);
-                $scope.$emit('dialog:close', this);
+                $scope.$emit('$dialogClose', this);
 
                 if (this.dialogReturnDeffered) {
                     returnValue !== undefined

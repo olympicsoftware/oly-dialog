@@ -150,3 +150,22 @@ used as a child of the `<dialog>` element.
 
 The `return` attribute is bound to the expression given and will be used as the
 returnValue for the `close()` method.
+
+### Events
+
+#### $dialogShow
+
+Type: emit
+
+Target: dialog containing scope
+
+Arguments: dialog controller instance
+
+#### $dialogClose
+
+Type: emit
+
+Target: dialog containing scope
+
+Arguments: dialog controller instance
+
