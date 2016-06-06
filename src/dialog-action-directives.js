@@ -3,15 +3,15 @@ function dialogClose() {
         restrict: 'EA',
         require: '^dialog',
         scope: {
-            returnValue: '=?return'
+            returnValue: '=?return',
         },
         link(scope, element, attrs, dialog) {
-            element.on('click', function() {
+            element.on('click', () => {
                 scope.$apply(() => {
                     dialog.close(scope.returnValue);
                 });
             });
-        }
+        },
     };
 }
 
@@ -21,13 +21,13 @@ function dialogShow(dialogRegistry) {
         scope: {
             dialogName: '@olyDialogShow',
             isModal: '=?modal',
-            anchorSelector: '@?anchor'
+            anchorSelector: '@?anchor',
         },
-        link(scope, element, attrs) {
+        link(scope, element) {
             scope.isModal = scope.isModal !== undefined ? scope.isModal : true;
 
-            element.on('click', function() {
-                let dialog = dialogRegistry.getDialog(scope.dialogName);
+            element.on('click', () => {
+                const dialog = dialogRegistry.getDialog(scope.dialogName);
 
                 if (dialog) {
                     scope.$apply(() => {
@@ -35,10 +35,8 @@ function dialogShow(dialogRegistry) {
                     });
                 }
             });
-        }
+        },
     };
 }
 
-export {
-    dialogClose, dialogShow
-};
+export { dialogClose, dialogShow };

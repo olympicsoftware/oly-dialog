@@ -1,11 +1,11 @@
 const defaultName = 'defaultDialog';
 
 export default class DialogRegistry {
-    /// <summary>
-    /// A global registry of dialogs which allows them to be retrieved
-    /// and controlled from Controllers/Services.
-    /// If there is only one dialog, the name parameters are optional.
-    /// </summary>
+    /**
+     * A global registry of dialogs which allows them to be retrieved
+     * and controlled from Controllers/Services.
+     * If there is only one dialog, the name parameters are optional.
+     */
     constructor() {
         this.dialogs = {};
     }

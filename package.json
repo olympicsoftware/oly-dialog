@@ -1,16 +1,17 @@
 {
   "name": "oly-dialog",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "An angular wrapper for the HTML5 <dialog> element",
   "main": "./src/index.js",
-  "browser": "./dist/oly-dialog.min.js",
   "scripts": {
     "prepublish": "npm run-script build",
-    "build": "browserify --debug src/index.js -t [babelify --sourceMapRelative .] -p browserify-derequire --outfile dist/oly-dialog.js && uglifyjs dist/oly-dialog.js -o dist/oly-dialog.min.js"
+    "build": "webpack -p",
+    "watch": "webpack -w -d",
+    "lint": "eslint src/ --cache"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/olympicsoftware/oly-dialog"
+    "url": "git+https://github.com/olympicsoftware/oly-dialog.git"
   },
   "keywords": [
     "angular",
@@ -22,13 +23,21 @@
   "author": "Andrew Hughson",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.3.14"
+    "angular": "^1.5.6",
+    "dialog-polyfill": "^0.4.3"
+  },
+  "optionalDependencies": {
+    "dialog-polyfill": "^0.4.3"
   },
   "devDependencies": {
-    "babelify": "^5.0.4",
-    "browserify": "^9.0.3",
-    "browserify-derequire": "^0.9.3",
-    "uglify-js": "^2.4.16"
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-config-olympic": "^1.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "webpack": "^2.1.0-beta.8"
   },
   "bugs": {
     "url": "https://github.com/olympicsoftware/oly-dialog/issues"

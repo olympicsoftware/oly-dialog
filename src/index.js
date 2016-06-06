@@ -1,8 +1,10 @@
+import angular from 'angular';
+
 import dialog from './dialog-directive';
-import {dialogClose, dialogShow} from './dialog-action-directives';
+import { dialogClose, dialogShow } from './dialog-action-directives';
 import DialogRegistry from './dialog-registry';
 
-let module = angular.module('oly.dialog', []);
+const module = angular.module('oly.dialog', []);
 
 module.service('DialogRegistry', [DialogRegistry]);
 
