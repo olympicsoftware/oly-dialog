@@ -5,13 +5,15 @@ import { dialogClose, dialogShow } from './dialog-action-directives';
 import DialogRegistry from './dialog-registry';
 
 const dialogModuleName = 'oly.dialog';
-const module = angular.module(dialogModuleName, []);
+const dialogModule = angular.module(dialogModuleName, []);
 
-module.service('DialogRegistry', [DialogRegistry]);
+dialogModule.service('DialogRegistry', [DialogRegistry]);
 
-module.directive('dialog', [dialog]);
+dialogModule.directive('dialog', [dialog]);
 
-module.directive('olyDialogClose', [dialogClose]);
-module.directive('olyDialogShow', ['DialogRegistry', dialogShow]);
+dialogModule.directive('olyDialogClose', [dialogClose]);
+dialogModule.directive('olyDialogShow', ['DialogRegistry', dialogShow]);
 
-export default dialogModuleName;
+// We use commonjs export here instead of ES6 because of the way webpack
+// exports this as a library.
+module.exports = dialogModuleName;

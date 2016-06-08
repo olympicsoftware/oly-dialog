@@ -10,7 +10,7 @@ module.exports = {
             exclude: /node_modules/i,
             loader: 'babel-loader',
             query: {
-                presets: ['es2015'],
+                presets: ['es2015-webpack'],
                 cacheDirectory: true,
             },
         }],
@@ -21,9 +21,11 @@ module.exports = {
     output: {
         path: path.resolve('./dist'),
         filename: '[name].min.js',
+        library: 'default',
+        libraryTarget: 'commonjs2',
     },
     externals: {
-        angular: 'angular',
+        angular: 'var angular',
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
