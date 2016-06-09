@@ -1,6 +1,6 @@
 {
   "name": "oly-dialog",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "An angular wrapper for the HTML5 <dialog> element",
   "main": "./dist/oly-dialog.min.js",
   "scripts": {
