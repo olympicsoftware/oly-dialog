@@ -15,10 +15,6 @@ export default function dialogDirective() {
 
                 dialogRegistry.addDialog(this, this.name);
 
-                $transclude((clone) => {
-                    $element.append(clone);
-                });
-
                 // While the dialog is not implemented in browsers, it should exist
                 // as a child of the body element.
                 if ($element[0].parentElement !== document.body) {
@@ -79,6 +75,10 @@ export default function dialogDirective() {
                 this.getReturnValue = function () {
                     return dialog.returnValue;
                 };
+
+                $transclude(clone => {
+                    $element.append(clone);
+                });
 
                 $scope.$on('$destroy', () => {
                     this.close();
